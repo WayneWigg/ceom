@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control Evidence Object Model</title>
+<meta name="description" content="A record model for what an AI agent is permitted to do, what it is expected to do, what it was observed doing, and the evidence for each.">
+<style>
+  :root {
+    --teal: #0E6E73; --body: #1F2A33; --grey: #5B6770;
+    --red: #B3261E; --rule: #E3E8EA; --bg: #FFFFFF; --panel: #F6F8F9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --teal: #5FB3B8; --body: #E8EDEF; --grey: #9AA7AE;
+      --red: #F2B8B5; --rule: #2C3A42; --bg: #141A1E; --panel: #1C252B;
+    }
+  }
+  :root[data-theme="dark"] {
+    --teal: #5FB3B8; --body: #E8EDEF; --grey: #9AA7AE;
+    --red: #F2B8B5; --rule: #2C3A42; --bg: #141A1E; --panel: #1C252B;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--body);
+    font: 16px/1.6 Arial, Helvetica, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 3rem 16px 5rem; }
+  h1 { color: var(--teal); font-size: 1.9rem; line-height: 1.2; margin: 0 0 .4rem; }
+  .sub { color: var(--grey); font-size: .95rem; margin: 0 0 2rem; }
+  h2 { color: var(--teal); font-size: 1.1rem; margin: 2.4rem 0 .6rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--teal); }
+  code { font-family: Consolas, Menlo, monospace; font-size: .88em; color: var(--grey);
+         background: var(--panel); padding: .1em .35em; border-radius: 3px;
+         overflow-wrap: anywhere; }
+  table { border-collapse: collapse; width: 100%; margin: 0 0 1rem; font-size: .92rem; }
+  th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--rule);
+           vertical-align: top; }
+  th { color: var(--teal); font-weight: bold; white-space: nowrap; }
+  td:first-child { white-space: nowrap; color: var(--grey); }
+  .panel { background: var(--panel); border-left: 3px solid var(--teal);
+           padding: 1rem 1.1rem; margin: 0 0 1.4rem; font-size: .95rem; }
+  .panel p:last-child { margin: 0; }
+  .doi { font-size: .9rem; color: var(--grey); }
+  footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+           color: var(--grey); font-size: .85rem; }
+  /* The identifier table holds URLs longer than a phone is wide. Without
+     these three the page scrolls sideways, which was true of the first
+     build and is the reason the rendering check exists. */
+  @media (max-width: 34rem) {
+    .wrap { padding-top: 2rem; }
+    h1 { font-size: 1.5rem; }
+    th, td:first-child { white-space: normal; }
+    table, tbody, tr { display: block; }
+    th, td { display: block; border-bottom: none; padding: .35rem 0; }
+    tr { border-bottom: 1px solid var(--rule); padding: .4rem 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Control Evidence Object Model</h1>
+<p class="sub">A record model for what an AI agent is permitted to do, what it is
+expected to do, what it was observed doing, and the evidence for each.</p>
+
+<div class="panel">
+<p><strong>Version 0.9.10, pre-1.0.</strong> Circulated for challenge, not adoption.</p>
+<p class="doi">AIscale Ltd &middot;
+<a href="https://doi.org/10.5281/zenodo.23687472">DOI 10.5281/zenodo.23687472</a>
+for this version, <a href="https://doi.org/10.5281/zenodo.23687471">10.5281/zenodo.23687471</a> for the
+current one &middot; Specification under CC BY 4.0, schema and validator under
+Apache 2.0</p>
+</div>
+
+<h2>Why it exists</h2>
+<p>Permissions for AI agents are well served by existing standards. Scopes, rich
+authorisation requests, token exchange and authorisation APIs all describe what an
+agent may do. <strong>Observed actions and the evidence for them have no common
+schema.</strong> So an organisation can hold a register, a policy, a committee and
+a risk assessment process and still be unable to state whether what its agents did
+matches what anyone intended.</p>
+
+<p>This model records that layer. Twelve objects across four layers, from an
+obligation through to the evidence for it, holding three positions on every action
+rather than two: what the grants permit, what the accountable person expects, and
+what was observed. <strong>The divergence between the second and the third is where
+authority expands without anyone deciding that it should.</strong></p>
+
+<h2>The documents</h2>
+<table>
+<tr><th>Specification</th><td>
+  <a href="0.9.10/control-evidence-object-model-v0.9.10.pdf">PDF</a> &middot;
+  <a href="0.9.10/control-evidence-object-model-v0.9.10.md">source</a>
+</td></tr>
+<tr><th>JSON Schema</th><td>
+  <a href="0.9.10/ceom.schema.json"><code>ceom.schema.json</code></a>, draft 2020-12
+</td></tr>
+<tr><th>Field dictionary</th><td>
+  <a href="0.9.10/ceom.field-dictionary.csv"><code>ceom.field-dictionary.csv</code></a>
+</td></tr>
+<tr><th>Vocabularies</th><td>
+  <a href="0.9.10/ceom.vocabularies.json"><code>ceom.vocabularies.json</code></a>
+</td></tr>
+<tr><th>Validator</th><td>
+  <a href="0.9.10/reference/validate.py"><code>reference/validate.py</code></a>
+</td></tr>
+<tr><th>Citation</th><td>
+  <a href="0.9.10/CITATION.cff"><code>CITATION.cff</code></a>
+</td></tr>
+</table>
+
+<h2>The twelve objects</h2>
+<table>
+<tr><th>Designed</th><td>1 Obligation &middot; 2 Interpretation &middot; 3 Control
+  &middot; 4 Owner &middot; 5 Authority</td></tr>
+<tr><th>Estate</th><td>6 Asset &middot; 7 Dependency</td></tr>
+<tr><th>Runtime</th><td>8 Action &middot; 9 Exception &middot; 10 Decision</td></tr>
+<tr><th>Spanning</th><td>11 Evidence &middot; 12 Permission</td></tr>
+</table>
+
+<h2>Conformance</h2>
+<p>Annex D distinguishes two kinds of failure that must never be mixed.
+<strong>A defect means the records are malformed</strong>, so nothing can be
+concluded from them. <strong>A finding means the records are well formed and say
+something about the subject.</strong> A null approver is not a broken record; it is
+a statement that nobody approved the grant.</p>
+<p><strong>Conformance is the absence of defects. It is not the absence of
+findings.</strong></p>
+
+<h2>Identifiers</h2>
+<p>Terms are identified under this namespace, versioned:</p>
+<table>
+<tr><th>Object</th><td><code>https://ceom.aiscale.ltd/0.9.10/object/obligation</code></td></tr>
+<tr><th>Field</th><td><code>https://ceom.aiscale.ltd/0.9.10/field/obligation.source_ref</code></td></tr>
+<tr><th>Term</th><td><code>https://ceom.aiscale.ltd/0.9.10/term/exception/transformation_defect</code></td></tr>
+</table>
+<p>These are names. Only the schema resolves to a document today; the remaining
+term addresses are identifiers rather than endpoints, and will be served when
+there is a reason to.</p>
+
+<h2>Status, stated plainly</h2>
+<p>The twelve objects, the four layers, the evidence scale, the reference states and
+the gap scale are stable. Field-level detail may still move.</p>
+<p>The model has been instantiated against two real agent assessments.
+<strong>The worked examples in the specification are constructed, deliberately</strong>,
+so that no reader receives a client estate along with the document.</p>
+<p><strong>What it still lacks is the measurement that matters:</strong> two
+assessors reaching the same determinations independently from the same artefacts.</p>
+
+<h2>Challenge it</h2>
+<p>The model was circulated for challenge rather than adoption. Open question 11
+is the one that most needs other people: whether the Exception vocabulary survives
+contact with the parties who must map into it. Ten terms, each of which somebody's
+existing classification must fold into without loss.</p>
+
+<footer>
+<p>Control Evidence Object Model &copy; 2026 AIscale Ltd. Specification, field
+dictionary and vocabularies under CC BY 4.0. JSON Schema and reference validator
+under Apache 2.0. Commercial implementation is permitted; attribution is required.</p>
+<p>The assessment practice built on this model is not published and is not required
+in order to implement it.</p>
+</footer>
+
+</div>
+</body>
+</html>
