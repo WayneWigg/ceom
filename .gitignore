@@ -1,0 +1,38 @@
+# This repository is PUBLIC and is bound to ceom.aiscale.ltd.
+# Everything committed here is published. Nothing belonging to a client,
+# an engagement or the assessment practice may enter it.
+#
+# The exclusions below are belt and braces, not the control. The control is
+# that this repository holds the published model and nothing else, and that
+# the toolchain lives in a separate private repository.
+
+# Client material and engagement data, in any form
+*engagement*
+*client*
+eng_*.py
+subjects/
+packs/
+answer*key*
+*ANSWER*KEY*
+*DO_NOT_LOAD*
+
+# Assessment output, which is not published
+reports/
+out/
+*.db
+*record-store*
+*-t1.*
+*-t2.*
+*-t3.*
+
+# The practice, which is deliberately not published
+*position-library*
+*scenario*
+FORMAT-*
+PRICE*
+
+# Local noise
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
