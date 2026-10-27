@@ -1,0 +1,1481 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ceom.aiscale.ltd/0.9.10/ceom.schema.json",
+  "title": "Control Evidence Object Model",
+  "description": "Generated mechanically from the CEOM v0.9.10 specification. Field names, labels and definitions are taken verbatim from the specification. Field TYPES and CARDINALITY are not stated in the specification and are therefore absent here: every such field carries \"x-ceom-type-unstated\": true. Deciding those types is design work, not conversion work, and is the only remaining step to a usable schema.",
+  "x-ceom-version": "0.9.10",
+  "x-ceom-generated-from": "control-evidence-object-model-v0.9.10.md",
+  "$defs": {
+    "Obligation": {
+      "type": "object",
+      "title": "1 Obligation",
+      "description": "A single discrete requirement, derived from a regulatory or contractual source.",
+      "x-ceom-object-number": 1,
+      "x-ceom-band": "designed",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "source_ref": {
+          "title": "Source",
+          "description": "The registered Asset the requirement is published in — a rulebook, a standard, a code of practice, a contract. **Must resolve to a registered Asset**, not free text.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "source_locator": {
+          "title": "Where in the source",
+          "description": "The citation within that document, as the source itself numbers it. \"Principle 3, paragraph 36(c)\". \"Article 111\".",
+          "x-ceom-type-unstated": true
+        },
+        "source_version": {
+          "title": "Source version",
+          "description": "The version of the requirement identified by `source_ref` and `source_locator` together, as that source identifies it — a version number where the source has one, a date-state where it does not. Positions within one document are amended on different dates, so this belongs to the position rather than to the document.",
+          "x-ceom-type-unstated": true
+        },
+        "in_force_from": {
+          "title": "In force from",
+          "description": "The date the obligation comes into effect. Not the date its source was published, which is frequently much earlier and is a fact about the document rather than about the requirement.",
+          "x-ceom-type-unstated": true
+        },
+        "introduced_by": {
+          "title": "Introduced by",
+          "description": "The publication that brought it in — a policy statement, consultation outcome or technical standard. How regulatory change functions actually track it.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Asset"
+        },
+        "jurisdiction": {
+          "title": "Jurisdiction",
+          "description": "Whose rulebook this comes from.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "applicability": {
+          "title": "Who it applies to",
+          "description": "Which entities, products and transactions the obligation binds.",
+          "x-ceom-type-unstated": true
+        },
+        "part_of": {
+          "title": "Part of",
+          "description": "The parent Obligation this one decomposes. Optional, resolved as at `effective_from` under principle 9.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Obligation"
+        },
+        "owner_id": {
+          "title": "Obligation owner",
+          "description": "The firm's owner of this obligation record. Accountable for it being correctly stated, correctly scoped, and still current. Not for the requirement existing.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Interpretation": {
+      "type": "object",
+      "title": "2 Interpretation",
+      "description": "The position the organisation took on what a requirement means.",
+      "x-ceom-object-number": 2,
+      "x-ceom-band": "designed",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "obligation_id": {
+          "title": "Obligation",
+          "description": "The requirement being interpreted. May be null, where the position is internal policy rather than a reading of a rule — which is how non-regulatory cyber and security policy enters the model.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "position": {
+          "title": "The stated position",
+          "description": "What the organisation decided the requirement means for it.",
+          "x-ceom-type-unstated": true
+        },
+        "rationale": {
+          "title": "Reason for the position",
+          "description": "Why that reading was taken.",
+          "x-ceom-type-unstated": true
+        },
+        "decided_by": {
+          "title": "Decided by",
+          "description": "The Owner who took it.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner",
+          "x-ceom-note": "Design principle 9: names an Owner identity, resolved to the row effective at effective_from."
+        },
+        "source_ref": {
+          "title": "Source document",
+          "description": "The Asset the position lives in — a policy, change memo, operating procedure or delegated reporting agreement. **Must resolve to a registered Asset**, not free text.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "supersedes": {
+          "title": "Replaces",
+          "description": "The interpretation this one replaces.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Interpretation"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Control": {
+      "type": "object",
+      "title": "3 Control",
+      "description": "What the organisation does to discharge the obligation, as designed.",
+      "x-ceom-object-number": 3,
+      "x-ceom-band": "designed",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "obligation_ids": {
+          "title": "Obligations discharged",
+          "description": "Which requirements this control exists to satisfy.",
+          "x-ceom-type-unstated": true,
+          "type": "array",
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "interpretation_id": {
+          "title": "Interpretation applied",
+          "description": "The position the control was designed against.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "objective": {
+          "title": "What the control is for",
+          "description": "The outcome it secures, stated independently of how it is built.",
+          "x-ceom-type-unstated": true
+        },
+        "kind": {
+          "title": "Control type",
+          "description": "See permitted values below.",
+          "enum": [
+            "preventive",
+            "detective",
+            "corrective"
+          ],
+          "x-ceom-vocabulary": "Control.kind"
+        },
+        "frequency": {
+          "title": "How often it runs",
+          "description": "The band, not the schedule. See permitted values below.",
+          "enum": [
+            "continuous",
+            "event_driven",
+            "daily",
+            "weekly",
+            "monthly",
+            "quarterly",
+            "annual",
+            "ad_hoc"
+          ],
+          "x-ceom-vocabulary": "Control.frequency"
+        },
+        "owner_id": {
+          "title": "Control owner",
+          "description": "Standing accountability for this control.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "implemented_by": {
+          "title": "Implemented in",
+          "description": "The Assets that carry it.",
+          "x-ceom-type-unstated": true,
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Owner": {
+      "type": "object",
+      "title": "4 Owner",
+      "description": "Standing accountability for one object",
+      "x-ceom-object-number": 4,
+      "x-ceom-band": "designed",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "role": {
+          "title": "Role",
+          "description": "The accountable role.",
+          "x-ceom-type-unstated": true
+        },
+        "person": {
+          "title": "Person",
+          "description": "The named individual holding it. Not a team, not a mailbox. **Nullable: null means the role is recognised and nobody holds it.**",
+          "x-ceom-type-unstated": true
+        },
+        "smf_ref": {
+          "title": "Senior manager function",
+          "description": "Where the role maps to a designated senior management function. Nullable.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "scope": {
+          "title": "What they own",
+          "description": "The objects this ownership covers.",
+          "x-ceom-type-unstated": true
+        },
+        "delegated_from": {
+          "title": "Delegated from",
+          "description": "Where the accountability came from.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner",
+          "x-ceom-note": "Design principle 9: names an Owner identity, resolved to the row effective at effective_from."
+        }
+      },
+      "additionalProperties": false
+    },
+    "Authority": {
+      "type": "object",
+      "title": "5 Authority",
+      "description": "What lets a role act, and direct objects owned by others.",
+      "x-ceom-object-number": 5,
+      "x-ceom-band": "designed",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "granted_to": {
+          "title": "Granted to",
+          "description": "The actor receiving it — a person, a system or an agent.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at effective_from; system and agent resolve to an Asset."
+        },
+        "granted_by": {
+          "title": "Granted by",
+          "description": "The Owner conferring it, or the Asset that conferred it where no person did.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner",
+          "x-ceom-note": "Design principle 9: names an Owner identity, resolved to the row effective at effective_from."
+        },
+        "permitted_action": {
+          "title": "What may be done",
+          "description": "One verb, drawn from the Action vocabulary at object 8.",
+          "enum": [
+            "access",
+            "read",
+            "infer",
+            "extract",
+            "recommend",
+            "draft",
+            "update",
+            "submit",
+            "approve",
+            "block",
+            "escalate"
+          ],
+          "x-ceom-vocabulary": "Action.verb"
+        },
+        "permitted_asset_id": {
+          "title": "What it may be done to",
+          "description": "One asset.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "limits": {
+          "title": "Limits",
+          "description": "Value, volume or scope constraints. Four separable facts — see below.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-nested": true
+        },
+        "conditions": {
+          "title": "Conditions",
+          "description": "Preconditions that must hold for the grant to apply.",
+          "x-ceom-type-unstated": true
+        },
+        "expires": {
+          "title": "Expires",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "established_by": {
+          "title": "Who determined it was needed",
+          "description": "The person or system that decided this grantee should hold this. Often the grantee themselves, which is itself a finding.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at effective_from; system and agent resolve to an Asset."
+        },
+        "established_from": {
+          "title": "What they relied on",
+          "description": "The Asset relied upon — a contract, a role record, a screening report, a change ticket. **Null means the grant rests on assertion alone.**",
+          "x-ceom-type-unstated": true
+        },
+        "approved_by": {
+          "title": "Who accepted it",
+          "description": "**Must differ from `established_by`.** Self-approval is not approval. Null is a finding, not a blank.",
+          "x-ceom-type-unstated": true
+        },
+        "approved_at": {
+          "title": "When it was approved",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "approved_from": {
+          "title": "What the approver relied on",
+          "description": "The Asset the approver relied upon. Distinct from `established_from`, which is what the establisher relied upon. **Null means the approval rests on nothing recorded.**",
+          "x-ceom-type-unstated": true
+        },
+        "enforced_by": {
+          "title": "Enforced in",
+          "description": "The Asset that enforces the grant — an IAM policy, an access gateway, or the application itself. Resolved as at `effective_from` under principle 9.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Asset"
+        },
+        "source_ref": {
+          "title": "Source document",
+          "description": "The Asset the grant is recorded in. **Must resolve to a registered Asset**, not free text.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "statement": {
+          "title": "The constraint",
+          "description": "The rule in words. \"Transactions at or above the threshold require human approval.\"",
+          "x-ceom-type-unstated": true
+        },
+        "value": {
+          "title": "Value as observed",
+          "description": "The threshold at the moment it was recorded. Null where the constraint has no number.",
+          "x-ceom-type-unstated": true
+        },
+        "value_ref": {
+          "title": "Where the value is maintained",
+          "description": "The Asset holding the configured value. **Must resolve to a registered Asset.** Null means the number is maintained nowhere, or nobody could say where.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "observed_at": {
+          "title": "When it was read",
+          "description": "When `value` was taken from `value_ref`.",
+          "x-ceom-type-unstated": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "Asset": {
+      "type": "object",
+      "title": "6 Asset",
+      "description": "Anything a control attaches to or a dependency runs through.",
+      "x-ceom-object-number": 6,
+      "x-ceom-band": "estate",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "kind": {
+          "title": "Asset type",
+          "description": "See permitted values below.",
+          "enum": [
+            "system",
+            "data_pipeline",
+            "model",
+            "index",
+            "euc",
+            "prompt",
+            "data_element_logical",
+            "data_element_physical",
+            "report",
+            "document",
+            "provider"
+          ],
+          "x-ceom-vocabulary": "Asset.kind"
+        },
+        "name": {
+          "title": "Name",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "owner_id": {
+          "title": "Asset owner",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "criticality": {
+          "title": "Criticality",
+          "description": "Importance to a **business service**. An availability measure. Not the same scale as `Exception.materiality`, and not the same axis as `sensitivity{}`.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "availability",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "provider_id": {
+          "title": "Provider",
+          "description": "Where a third party supplies it.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "location": {
+          "title": "Where it runs",
+          "description": "Six separable facts — see below.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-nested": true
+        },
+        "sensitivity": {
+          "title": "How sensitive it is",
+          "description": "Six separable facts — see below.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-nested": true
+        },
+        "data_residency": {
+          "title": "Where the data sits",
+          "description": "At rest.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "compute_location": {
+          "title": "Where processing happens",
+          "description": "The jurisdictions in which the asset executes, including any that only handle it transiently.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "key_custody": {
+          "title": "Who holds the keys",
+          "description": "The actor holding the encryption keys, not a place. A typed actor: the organisation, the provider, or a named third party.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at effective_from; system and agent resolve to an Asset."
+        },
+        "support_access": {
+          "title": "Support access from",
+          "description": "Which jurisdictions humans can reach it from.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "log_location": {
+          "title": "Where logs are held",
+          "description": "The jurisdictions holding the asset's logs. Often different from the data, and the difference is what breaks an exit plan.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "legal_jurisdiction": {
+          "title": "Governing jurisdiction",
+          "description": "Whose courts bind the provider and its parent.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^([A-Z]{2}|EU|EEA|WORLDWIDE)$",
+            "description": "ISO 3166-1 alpha-2, or one of the three supranational codes."
+          },
+          "x-ceom-supranational": [
+            "EU",
+            "EEA",
+            "WORLDWIDE"
+          ],
+          "x-ceom-note": "D82: coded, not free text, because comparing the six location facts against each other is the purpose of the structure. Recorded at the precision the answer was given: a provider that says \"EU\" is recorded as EU, and that imprecision is the finding."
+        },
+        "system_tier": {
+          "title": "System tier",
+          "description": "The organisation's own tiering, whatever scale it uses.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "the organisation's own tiering",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "information_class": {
+          "title": "Information classification",
+          "description": "Public, internal, confidential, and so on. The organisation's scheme, not ours.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "the organisation's classification scheme",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "contains_pii": {
+          "title": "Contains personal data",
+          "description": "",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        },
+        "special_category": {
+          "title": "Special category data",
+          "description": "Article 9 data, or the local equivalent.",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        },
+        "regulatory_scope": {
+          "title": "Regulatory scope",
+          "description": "PCI DSS, SOX, and similar designations.",
+          "x-ceom-type-unstated": true
+        },
+        "crown_jewel": {
+          "title": "Crown jewel",
+          "description": "A designation sitting above the others. Usually small, hand-curated, and frequently disagreeing with the tiering — which is itself a finding.",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        }
+      },
+      "additionalProperties": false
+    },
+    "Dependency": {
+      "type": "object",
+      "title": "7 Dependency",
+      "description": "A directed edge between two Assets.",
+      "x-ceom-object-number": 7,
+      "x-ceom-band": "estate",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "from_id": {
+          "title": "From",
+          "description": "The Asset the edge runs from.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "to_id": {
+          "title": "To",
+          "description": "The Asset the edge runs to.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "kind": {
+          "title": "Dependency type",
+          "description": "See permitted values below.",
+          "enum": [
+            "reads_from",
+            "writes_to",
+            "derives",
+            "runs_on",
+            "invokes",
+            "backs_up",
+            "substitutes_for",
+            "resides_in"
+          ],
+          "x-ceom-vocabulary": "Dependency.kind"
+        },
+        "criticality": {
+          "title": "Criticality",
+          "description": "How much it matters if this dependency fails. The same availability axis as `Asset.criticality`, and on the same firm-local scale.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "availability",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "crosses_boundary": {
+          "title": "Crosses a boundary",
+          "description": "Whether the edge leaves a controlled perimeter.",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        },
+        "refresh_mode": {
+          "title": "How the copy is refreshed",
+          "description": "For `derives` edges only. See below.",
+          "enum": [
+            "continuous",
+            "scheduled",
+            "manual",
+            "on_deployment"
+          ],
+          "x-ceom-vocabulary": "Dependency.refresh_mode"
+        },
+        "last_refreshed_observed": {
+          "title": "Last refreshed, as observed",
+          "description": "The date the derived copy was last rebuilt, **and the date that observation was made**. True when recorded, and wrong a week later.",
+          "x-ceom-type-unstated": true
+        },
+        "evidence_ref": {
+          "title": "Evidence",
+          "description": "What proves the edge exists and, for `substitutes_for`, that it has been exercised.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Action": {
+      "type": "object",
+      "title": "8 Action",
+      "description": "An event: a named actor did something, to something, at a time.",
+      "x-ceom-object-number": 8,
+      "x-ceom-band": "runtime",
+      "x-ceom-versioned": false,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "mode": {
+          "title": "Which position this record asserts",
+          "description": "See permitted values below.",
+          "enum": [
+            "permitted",
+            "expected",
+            "performed"
+          ],
+          "x-ceom-vocabulary": "Action.mode"
+        },
+        "actor_id": {
+          "title": "Who or what acted",
+          "description": "Must resolve to a single actor — `john.smith`, `batch-4471`, `agent-21094`. Not a team, not a process family.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "actor_type": {
+          "title": "Actor type",
+          "description": "See permitted values below.",
+          "enum": [
+            "human",
+            "system",
+            "agent"
+          ],
+          "x-ceom-vocabulary": "Action.actor_type"
+        },
+        "verb": {
+          "title": "What was done",
+          "description": "See permitted values below.",
+          "enum": [
+            "access",
+            "read",
+            "infer",
+            "extract",
+            "recommend",
+            "draft",
+            "update",
+            "submit",
+            "approve",
+            "block",
+            "escalate"
+          ],
+          "x-ceom-vocabulary": "Action.verb"
+        },
+        "target_asset_id": {
+          "title": "What it was done to",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "destination_asset_id": {
+          "title": "Where the copy went",
+          "description": "Required for `extract`, null otherwise. Resolves to an Asset, so its six location facts come with it.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "retention": {
+          "title": "Whether the copy persisted",
+          "description": "What happened to the copy after the act. A state after the act, not a different act. See permitted values below.",
+          "enum": [
+            "discarded",
+            "held_for_task",
+            "persisted"
+          ],
+          "x-ceom-vocabulary": "Action.retention"
+        },
+        "output_sensitivity": {
+          "title": "What the output carried",
+          "description": "The class of what this action put into its destination, on the same scale as `Asset.information_class`. Null means the target asset's class stands.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "the organisation's classification scheme",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "authority_id": {
+          "title": "Under what authority",
+          "description": "The grant the action was taken under. Null is a finding, not a blank.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "preconditions": {
+          "title": "Preconditions",
+          "description": "What had to hold before it could occur.",
+          "x-ceom-type-unstated": true
+        },
+        "occurred_at": {
+          "title": "When it happened",
+          "description": "",
+          "x-ceom-type-unstated": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "Exception": {
+      "type": "object",
+      "title": "9 Exception",
+      "description": "A divergence between expected and actual.",
+      "x-ceom-object-number": 9,
+      "x-ceom-band": "runtime",
+      "x-ceom-versioned": false,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "kind": {
+          "title": "Break type",
+          "description": "See permitted values below.",
+          "enum": [
+            "interpretation_mismatch",
+            "config_defect",
+            "transformation_defect",
+            "data_defect",
+            "population_drift",
+            "rejection",
+            "late",
+            "unauthorised_action",
+            "dependency_failure",
+            "boundary_violation"
+          ],
+          "x-ceom-vocabulary": "Exception.kind"
+        },
+        "control_id": {
+          "title": "Control affected",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "asset_ids": {
+          "title": "Assets affected",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "type": "array",
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "detected_by": {
+          "title": "Detected by",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "detected_at",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at detected_at; system and agent resolve to an Asset."
+        },
+        "detected_at": {
+          "title": "When detected",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "occurred_at": {
+          "title": "When it happened",
+          "description": "The interval between these two is what a supervisor asks about.",
+          "x-ceom-type-unstated": true
+        },
+        "materiality": {
+          "title": "Materiality",
+          "description": "Regulatory consequence. Not the same scale as `Asset.criticality`.",
+          "type": "string",
+          "x-ceom-firm-local-scale": true,
+          "x-ceom-axis": "regulatory consequence",
+          "x-ceom-note": "D81: held exactly as the organisation writes it. The scale is declared on the manifest Scales tab and resolved as at this record's date under principle 9. Not standardised, and not comparable between organisations."
+        },
+        "recurrence_key": {
+          "title": "Repeat identifier",
+          "description": "What makes this the same break as a previous one. Without it, the third occurrence looks like the first.",
+          "x-ceom-type-unstated": true
+        },
+        "root_cause_ref": {
+          "title": "Root cause",
+          "description": "May reference an external classification — an ATT&CK technique, an OWASP category — rather than a term owned here.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "status": {
+          "title": "Status",
+          "description": "See permitted values below. **Defaults to `recorded`.**",
+          "enum": [
+            "recorded",
+            "accepted",
+            "remediating",
+            "withdrawn",
+            "closed"
+          ],
+          "x-ceom-vocabulary": "Exception.status"
+        },
+        "remediation_id": {
+          "title": "Remediation",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Decision": {
+      "type": "object",
+      "title": "10 Decision",
+      "description": "A judgement made about an Exception, an Action, a Control or an Interpretation.",
+      "x-ceom-object-number": 10,
+      "x-ceom-band": "runtime",
+      "x-ceom-versioned": false,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "subject_ref": {
+          "title": "What was decided about",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "kind": {
+          "title": "Decision type",
+          "description": "See permitted values below.",
+          "enum": [
+            "approve",
+            "reject",
+            "escalate",
+            "accept_risk",
+            "remediate",
+            "suspend",
+            "restart",
+            "set_expectation"
+          ],
+          "x-ceom-vocabulary": "Decision.kind"
+        },
+        "decided_by": {
+          "title": "Decided by",
+          "description": "Who or what exercised the judgement — a person, a system or an agent.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "decided_at",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at decided_at; system and agent resolve to an Asset."
+        },
+        "answerable_for": {
+          "title": "Accountable for this decision",
+          "description": "The person who answers for it. **Always a person.**",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "decided_at",
+          "x-ceom-target": "Owner",
+          "x-ceom-note": "Design principle 9: names an Owner identity, resolved to the row effective at decided_at."
+        },
+        "authority_id": {
+          "title": "Under what authority",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "rationale": {
+          "title": "Reason for the decision",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "evidence_refs": {
+          "title": "Evidence relied on",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "type": "array",
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "decided_at": {
+          "title": "When decided",
+          "description": "",
+          "x-ceom-type-unstated": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "title": "11 Evidence",
+      "description": "A record asserting that something was true at a point in time.",
+      "x-ceom-object-number": 11,
+      "x-ceom-band": "spanning",
+      "x-ceom-versioned": false,
+      "properties": {
+        "id": {
+          "title": "Identifier",
+          "description": "Stable identifier for this record. Names an identity, not a row.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "subject_ref": {
+          "title": "What it evidences",
+          "description": "",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "kind": {
+          "title": "Evidence type",
+          "description": "See permitted values below.",
+          "enum": [
+            "test_result",
+            "attestation",
+            "approval",
+            "receipt",
+            "log",
+            "submission",
+            "report",
+            "backup"
+          ],
+          "x-ceom-vocabulary": "Evidence.kind"
+        },
+        "captured_at": {
+          "title": "When captured",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "captured_by": {
+          "title": "Captured by",
+          "description": "**Must differ from the actor that performed the Action.** Self-verification is not evidence.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "captured_at",
+          "x-ceom-target": "Owner | Asset",
+          "x-ceom-actor-typed": true,
+          "x-ceom-note": "Typed actor: actor_type from human/system/agent plus a reference. human resolves to an Owner as at captured_at; system and agent resolve to an Asset."
+        },
+        "retention_until": {
+          "title": "Retain until",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "storage_location": {
+          "title": "Where held",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "independent": {
+          "title": "Held independently",
+          "description": "Whether this evidence sits outside the system it evidences.",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        },
+        "integrity_hash": {
+          "title": "Integrity check",
+          "description": "",
+          "x-ceom-type-unstated": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "Permission": {
+      "type": "object",
+      "title": "12 Permission",
+      "description": "The position a data owner takes on an asset being used for a purpose.",
+      "x-ceom-object-number": 12,
+      "x-ceom-band": "spanning",
+      "x-ceom-versioned": true,
+      "properties": {
+        "id": {
+          "title": "Permission ID",
+          "description": "Stable, meaningless.",
+          "x-ceom-type-unstated": true
+        },
+        "recorded_at": {
+          "title": "Recorded at",
+          "description": "When this record was written.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "recorded_by": {
+          "title": "Recorded by",
+          "description": "Who or what wrote it.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "derived_from": {
+          "title": "Derived from",
+          "description": "The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_from": {
+          "title": "Effective from",
+          "description": "When the fact it asserts began to hold.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "effective_to": {
+          "title": "Effective to",
+          "description": "When it ceased to hold. Null means current.",
+          "x-ceom-trait": true,
+          "x-ceom-type-unstated": true
+        },
+        "asset_ids": {
+          "title": "What it covers",
+          "description": "The assets this position applies to.",
+          "x-ceom-type-unstated": true,
+          "type": "array",
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "granted_by": {
+          "title": "Granted by",
+          "description": "The Owner of the asset. Not the owner of the agent.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-target": "Owner",
+          "x-ceom-note": "Design principle 9: names an Owner identity, resolved to the row effective at effective_from."
+        },
+        "purpose": {
+          "title": "Purpose",
+          "description": "Why the data may be used. **The field the model previously could not express.**",
+          "x-ceom-type-unstated": true
+        },
+        "permitted_destinations": {
+          "title": "Where it may go",
+          "description": "The Assets the data may reach — systems, providers or stores. Jurisdictions are not held here; traverse to each destination's `location{}`, per principle 7.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "x-ceom-reference": true,
+          "x-ceom-target": "Asset",
+          "x-ceom-resolve-as-at": "effective_from",
+          "x-ceom-note": "D83: holds Assets, not places. Where a destination sits is reached by traversing to its own location{}, because principle 7 records location once and forbids duplicating it."
+        },
+        "onward_disclosure": {
+          "title": "Onward disclosure",
+          "description": "Whether the data may leave the organisation at all. Which third parties is answered by `permitted_destinations[]` pointing at provider Assets.",
+          "type": "boolean",
+          "x-ceom-note": "D72 and D83: a plain boolean. Object 11 evidences the assertion and the evidence scale carries UNKNOWN, so uncertainty is never held in the field itself."
+        },
+        "conditions": {
+          "title": "Conditions",
+          "description": "Constraints attached to the position.",
+          "x-ceom-type-unstated": true
+        },
+        "expires": {
+          "title": "Expires",
+          "description": "",
+          "x-ceom-type-unstated": true
+        },
+        "assessment_refs": {
+          "title": "Assessments relied on",
+          "description": "The privacy impact assessment and any equivalent, as Evidence.",
+          "x-ceom-type-unstated": true,
+          "type": "array",
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "retention_ref": {
+          "title": "Retention position",
+          "description": "Where the retention decision is recorded.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        },
+        "source_ref": {
+          "title": "Source document",
+          "description": "The agreement itself. **Must resolve to a registered Asset**, not free text.",
+          "x-ceom-type-unstated": true,
+          "x-ceom-reference": true,
+          "x-ceom-resolve-as-at": "the referring record's event time, per design principle 9"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

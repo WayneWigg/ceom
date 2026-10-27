@@ -1,0 +1,49 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright 2026 AIscale Ltd
+
+This licence applies to the following files in this deposit:
+
+    control-evidence-object-model-v0.9.10.md
+    control-evidence-object-model-v0.9.10.pdf
+    ceom.field-dictionary.csv
+    ceom.vocabularies.json
+
+The JSON schema and everything under reference/ are licensed separately under
+the Apache License 2.0. See LICENSE-Apache-2.0.txt.
+
+------------------------------------------------------------------------------
+
+You are free to:
+
+    Share   -- copy and redistribute the material in any medium or format
+    Adapt   -- remix, transform, and build upon the material
+               for any purpose, including commercially
+
+Under the following terms:
+
+    Attribution -- You must give appropriate credit, provide a link to the
+                   licence, and indicate if changes were made. You may do so
+                   in any reasonable manner, but not in any way that suggests
+                   the licensor endorses you or your use.
+
+    No additional restrictions -- You may not apply legal terms or
+                   technological measures that legally restrict others from
+                   doing anything the licence permits.
+
+Suggested attribution:
+
+    Wiggins, W. (2026). Control Evidence Object Model, version 0.9.10.
+    AIscale Ltd. DOI 10.5281/zenodo.23687472
+    Licensed under CC BY 4.0.
+
+------------------------------------------------------------------------------
+
+The authoritative text of this licence is published by Creative Commons and is
+not reproduced here, in line with Creative Commons' own guidance that licences
+be applied by reference rather than by copying:
+
+    Human-readable summary:  https://creativecommons.org/licenses/by/4.0/
+    Full legal code:         https://creativecommons.org/licenses/by/4.0/legalcode
+
+Where this file and the full legal code differ, the full legal code governs.

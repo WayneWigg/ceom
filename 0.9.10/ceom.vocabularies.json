@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CEOM controlled vocabularies",
+  "x-ceom-version": "0.9.10",
+  "x-ceom-warning": "Term DEFINITIONS are not included because 45 of the 64 controlled vocabulary terms are undefined in the specification. The permitted values are complete; their meanings are not.",
+  "$defs": {
+    "Control.kind": {
+      "enum": [
+        "preventive",
+        "detective",
+        "corrective"
+      ]
+    },
+    "Control.frequency": {
+      "enum": [
+        "continuous",
+        "event_driven",
+        "daily",
+        "weekly",
+        "monthly",
+        "quarterly",
+        "annual",
+        "ad_hoc"
+      ]
+    },
+    "Asset.kind": {
+      "enum": [
+        "system",
+        "data_pipeline",
+        "model",
+        "index",
+        "euc",
+        "prompt",
+        "data_element_logical",
+        "data_element_physical",
+        "report",
+        "document",
+        "provider"
+      ]
+    },
+    "Dependency.kind": {
+      "enum": [
+        "reads_from",
+        "writes_to",
+        "derives",
+        "runs_on",
+        "invokes",
+        "backs_up",
+        "substitutes_for",
+        "resides_in"
+      ]
+    },
+    "Dependency.refresh_mode": {
+      "enum": [
+        "continuous",
+        "scheduled",
+        "manual",
+        "on_deployment"
+      ]
+    },
+    "Action.retention": {
+      "enum": [
+        "discarded",
+        "held_for_task",
+        "persisted"
+      ]
+    },
+    "Action.mode": {
+      "enum": [
+        "permitted",
+        "expected",
+        "performed"
+      ]
+    },
+    "Action.actor_type": {
+      "enum": [
+        "human",
+        "system",
+        "agent"
+      ]
+    },
+    "Action.verb": {
+      "enum": [
+        "access",
+        "read",
+        "infer",
+        "extract",
+        "recommend",
+        "draft",
+        "update",
+        "submit",
+        "approve",
+        "block",
+        "escalate"
+      ]
+    },
+    "Exception.kind": {
+      "enum": [
+        "interpretation_mismatch",
+        "config_defect",
+        "transformation_defect",
+        "data_defect",
+        "population_drift",
+        "rejection",
+        "late",
+        "unauthorised_action",
+        "dependency_failure",
+        "boundary_violation"
+      ]
+    },
+    "Exception.status": {
+      "enum": [
+        "recorded",
+        "accepted",
+        "remediating",
+        "withdrawn",
+        "closed"
+      ]
+    },
+    "Decision.kind": {
+      "enum": [
+        "approve",
+        "reject",
+        "escalate",
+        "accept_risk",
+        "remediate",
+        "suspend",
+        "restart",
+        "set_expectation"
+      ]
+    },
+    "Evidence.kind": {
+      "enum": [
+        "test_result",
+        "attestation",
+        "approval",
+        "receipt",
+        "log",
+        "submission",
+        "report",
+        "backup"
+      ]
+    },
+    "Evidence.state": {
+      "enum": [
+        "COMPLETE",
+        "PARTIAL",
+        "SILENT",
+        "UNKNOWN",
+        "NOT_ENGAGED"
+      ]
+    },
+    "Reference.state": {
+      "enum": [
+        "connected",
+        "dangling",
+        "broken",
+        "duplicated",
+        "embedded",
+        "disconnected",
+        "absent"
+      ]
+    },
+    "Reference.reason": {
+      "enum": [
+        "unowned",
+        "self_authored",
+        "contested",
+        "no_register",
+        "no_entry",
+        "separate",
+        "generated"
+      ]
+    }
+  }
+}

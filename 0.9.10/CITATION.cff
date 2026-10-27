@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: Control Evidence Object Model
+message: >-
+  If you use this specification, please cite it using the metadata below.
+type: dataset
+abstract: >-
+  A record model for what an AI agent is permitted to do, what it is expected
+  to do, what it was observed doing, and the evidence for each. Twelve objects
+  across four layers, with controlled vocabularies, a five-state evidence
+  scale, seven reference states, a four-grade gap scale, a JSON schema and a
+  reference validator. Addresses the gap left by agent identity and
+  authorisation standards, which describe permissions but define no common
+  schema for observed actions and the evidence for them.
+authors:
+  - family-names: Wiggins
+    given-names: Wayne
+    affiliation: AIscale Ltd
+    orcid: 'https://orcid.org/0009-0002-2407-7419'
+version: 0.9.10
+date-released: '2026-10-27'
+license: CC-BY-4.0
+license-url: 'https://creativecommons.org/licenses/by/4.0/'
+doi: 10.5281/zenodo.23687472
+keywords:
+  - AI agents
+  - agentic AI
+  - AI governance
+  - control evidence
+  - assurance
+  - operational resilience
+  - cyber security
+  - data model
+  - specification
+  - audit evidence
+  - authorisation
+  - accountability

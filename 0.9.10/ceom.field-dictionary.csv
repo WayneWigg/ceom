@@ -1,0 +1,186 @@
+object_number,object,band,versioned,field,label,definition,is_trait,is_reference,vocabulary,type_stated_in_spec
+1,Obligation,designed,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+1,Obligation,designed,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+1,Obligation,designed,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+1,Obligation,designed,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+1,Obligation,designed,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+1,Obligation,designed,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+1,Obligation,designed,yes,source_ref,Source,"The registered Asset the requirement is published in — a rulebook, a standard, a code of practice, a contract. **Must resolve to a registered Asset**, not free text.",no,no,,no
+1,Obligation,designed,yes,source_locator,Where in the source,"The citation within that document, as the source itself numbers it. ""Principle 3, paragraph 36(c)"". ""Article 111"".",no,no,,no
+1,Obligation,designed,yes,source_version,Source version,"The version of the requirement identified by `source_ref` and `source_locator` together, as that source identifies it — a version number where the source has one, a date-state where it does not. Positions within one document are amended on different dates, so this belongs to the position rather than to the document.",no,no,,no
+1,Obligation,designed,yes,in_force_from,In force from,"The date the obligation comes into effect. Not the date its source was published, which is frequently much earlier and is a fact about the document rather than about the requirement.",no,no,,no
+1,Obligation,designed,yes,introduced_by,Introduced by,"The publication that brought it in — a policy statement, consultation outcome or technical standard. How regulatory change functions actually track it.",no,no,,no
+1,Obligation,designed,yes,jurisdiction,Jurisdiction,Whose rulebook this comes from.,no,no,,no
+1,Obligation,designed,yes,applicability,Who it applies to,"Which entities, products and transactions the obligation binds.",no,no,,no
+1,Obligation,designed,yes,part_of,Part of,"The parent Obligation this one decomposes. Optional, resolved as at `effective_from` under principle 9.",no,no,,no
+1,Obligation,designed,yes,owner_id,Obligation owner,"The firm's owner of this obligation record. Accountable for it being correctly stated, correctly scoped, and still current. Not for the requirement existing.",no,yes,,no
+2,Interpretation,designed,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+2,Interpretation,designed,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+2,Interpretation,designed,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+2,Interpretation,designed,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+2,Interpretation,designed,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+2,Interpretation,designed,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+2,Interpretation,designed,yes,obligation_id,Obligation,"The requirement being interpreted. May be null, where the position is internal policy rather than a reading of a rule — which is how non-regulatory cyber and security policy enters the model.",no,yes,,no
+2,Interpretation,designed,yes,position,The stated position,What the organisation decided the requirement means for it.,no,no,,no
+2,Interpretation,designed,yes,rationale,Reason for the position,Why that reading was taken.,no,no,,no
+2,Interpretation,designed,yes,decided_by,Decided by,The Owner who took it.,no,no,,no
+2,Interpretation,designed,yes,source_ref,Source document,"The Asset the position lives in — a policy, change memo, operating procedure or delegated reporting agreement. **Must resolve to a registered Asset**, not free text.",no,no,,no
+2,Interpretation,designed,yes,supersedes,Replaces,The interpretation this one replaces.,no,no,,no
+3,Control,designed,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+3,Control,designed,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+3,Control,designed,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+3,Control,designed,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+3,Control,designed,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+3,Control,designed,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+3,Control,designed,yes,obligation_ids[],Obligations discharged,Which requirements this control exists to satisfy.,no,no,,no
+3,Control,designed,yes,interpretation_id,Interpretation applied,The position the control was designed against.,no,yes,,no
+3,Control,designed,yes,objective,What the control is for,"The outcome it secures, stated independently of how it is built.",no,no,,no
+3,Control,designed,yes,kind,Control type,See permitted values below.,no,no,Control.kind,yes
+3,Control,designed,yes,frequency,How often it runs,"The band, not the schedule. See permitted values below.",no,no,Control.frequency,yes
+3,Control,designed,yes,owner_id,Control owner,Standing accountability for this control.,no,yes,,no
+3,Control,designed,yes,implemented_by[],Implemented in,The Assets that carry it.,no,no,,no
+4,Owner,designed,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+4,Owner,designed,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+4,Owner,designed,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+4,Owner,designed,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+4,Owner,designed,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+4,Owner,designed,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+4,Owner,designed,yes,role,Role,The accountable role.,no,no,,no
+4,Owner,designed,yes,person,Person,"The named individual holding it. Not a team, not a mailbox. **Nullable: null means the role is recognised and nobody holds it.**",no,no,,no
+4,Owner,designed,yes,smf_ref,Senior manager function,Where the role maps to a designated senior management function. Nullable.,no,no,,no
+4,Owner,designed,yes,scope,What they own,The objects this ownership covers.,no,no,,no
+4,Owner,designed,yes,delegated_from,Delegated from,Where the accountability came from.,no,no,,no
+5,Authority,designed,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+5,Authority,designed,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+5,Authority,designed,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+5,Authority,designed,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+5,Authority,designed,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+5,Authority,designed,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+5,Authority,designed,yes,granted_to,Granted to,"The actor receiving it — a person, a system or an agent.",no,no,,no
+5,Authority,designed,yes,granted_by,Granted by,"The Owner conferring it, or the Asset that conferred it where no person did.",no,no,,no
+5,Authority,designed,yes,permitted_action,What may be done,"One verb, drawn from the Action vocabulary at object 8.",no,no,Action.verb,yes
+5,Authority,designed,yes,permitted_asset_id,What it may be done to,One asset.,no,yes,,no
+5,Authority,designed,yes,limits{},Limits,"Value, volume or scope constraints. Four separable facts — see below.",no,no,,no
+5,Authority,designed,yes,conditions,Conditions,Preconditions that must hold for the grant to apply.,no,no,,no
+5,Authority,designed,yes,expires,Expires,,no,no,,no
+5,Authority,designed,yes,established_by,Who determined it was needed,"The person or system that decided this grantee should hold this. Often the grantee themselves, which is itself a finding.",no,no,,no
+5,Authority,designed,yes,established_from,What they relied on,"The Asset relied upon — a contract, a role record, a screening report, a change ticket. **Null means the grant rests on assertion alone.**",no,no,,no
+5,Authority,designed,yes,approved_by,Who accepted it,"**Must differ from `established_by`.** Self-approval is not approval. Null is a finding, not a blank.",no,no,,no
+5,Authority,designed,yes,approved_at,When it was approved,,no,no,,no
+5,Authority,designed,yes,approved_from,What the approver relied on,"The Asset the approver relied upon. Distinct from `established_from`, which is what the establisher relied upon. **Null means the approval rests on nothing recorded.**",no,no,,no
+5,Authority,designed,yes,enforced_by,Enforced in,"The Asset that enforces the grant — an IAM policy, an access gateway, or the application itself. Resolved as at `effective_from` under principle 9.",no,no,,no
+5,Authority,designed,yes,source_ref,Source document,"The Asset the grant is recorded in. **Must resolve to a registered Asset**, not free text.",no,no,,no
+5,Authority,designed,yes,statement,The constraint,"The rule in words. ""Transactions at or above the threshold require human approval.""",no,no,,no
+5,Authority,designed,yes,value,Value as observed,The threshold at the moment it was recorded. Null where the constraint has no number.,no,no,,no
+5,Authority,designed,yes,value_ref,Where the value is maintained,"The Asset holding the configured value. **Must resolve to a registered Asset.** Null means the number is maintained nowhere, or nobody could say where.",no,no,,no
+5,Authority,designed,yes,observed_at,When it was read,When `value` was taken from `value_ref`.,no,no,,no
+6,Asset,estate,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+6,Asset,estate,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+6,Asset,estate,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+6,Asset,estate,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+6,Asset,estate,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+6,Asset,estate,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+6,Asset,estate,yes,kind,Asset type,See permitted values below.,no,no,Asset.kind,yes
+6,Asset,estate,yes,name,Name,,no,no,,no
+6,Asset,estate,yes,owner_id,Asset owner,,no,yes,,no
+6,Asset,estate,yes,criticality,Criticality,"Importance to a **business service**. An availability measure. Not the same scale as `Exception.materiality`, and not the same axis as `sensitivity{}`.",no,no,,no
+6,Asset,estate,yes,provider_id,Provider,Where a third party supplies it.,no,yes,,no
+6,Asset,estate,yes,location{},Where it runs,Six separable facts — see below.,no,no,,no
+6,Asset,estate,yes,sensitivity{},How sensitive it is,Six separable facts — see below.,no,no,,no
+6,Asset,estate,yes,data_residency,Where the data sits,At rest.,no,no,,no
+6,Asset,estate,yes,compute_location,Where processing happens,"The jurisdictions in which the asset executes, including any that only handle it transiently.",no,no,,no
+6,Asset,estate,yes,key_custody,Who holds the keys,"The actor holding the encryption keys, not a place. A typed actor: the organisation, the provider, or a named third party.",no,no,,no
+6,Asset,estate,yes,support_access,Support access from,Which jurisdictions humans can reach it from.,no,no,,no
+6,Asset,estate,yes,log_location,Where logs are held,"The jurisdictions holding the asset's logs. Often different from the data, and the difference is what breaks an exit plan.",no,no,,no
+6,Asset,estate,yes,legal_jurisdiction,Governing jurisdiction,Whose courts bind the provider and its parent.,no,no,,no
+6,Asset,estate,yes,system_tier,System tier,"The organisation's own tiering, whatever scale it uses.",no,no,,no
+6,Asset,estate,yes,information_class,Information classification,"Public, internal, confidential, and so on. The organisation's scheme, not ours.",no,no,,no
+6,Asset,estate,yes,contains_pii,Contains personal data,,no,no,,no
+6,Asset,estate,yes,special_category,Special category data,"Article 9 data, or the local equivalent.",no,no,,no
+6,Asset,estate,yes,regulatory_scope,Regulatory scope,"PCI DSS, SOX, and similar designations.",no,no,,no
+6,Asset,estate,yes,crown_jewel,Crown jewel,"A designation sitting above the others. Usually small, hand-curated, and frequently disagreeing with the tiering — which is itself a finding.",no,no,,no
+7,Dependency,estate,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+7,Dependency,estate,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+7,Dependency,estate,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+7,Dependency,estate,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+7,Dependency,estate,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+7,Dependency,estate,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+7,Dependency,estate,yes,from_id,From,The Asset the edge runs from.,no,yes,,no
+7,Dependency,estate,yes,to_id,To,The Asset the edge runs to.,no,yes,,no
+7,Dependency,estate,yes,kind,Dependency type,See permitted values below.,no,no,Dependency.kind,yes
+7,Dependency,estate,yes,criticality,Criticality,"How much it matters if this dependency fails. The same availability axis as `Asset.criticality`, and on the same firm-local scale.",no,no,,no
+7,Dependency,estate,yes,crosses_boundary,Crosses a boundary,Whether the edge leaves a controlled perimeter.,no,no,,no
+7,Dependency,estate,yes,refresh_mode,How the copy is refreshed,For `derives` edges only. See below.,no,no,Dependency.refresh_mode,yes
+7,Dependency,estate,yes,last_refreshed_observed,"Last refreshed, as observed","The date the derived copy was last rebuilt, **and the date that observation was made**. True when recorded, and wrong a week later.",no,no,,no
+7,Dependency,estate,yes,evidence_ref,Evidence,"What proves the edge exists and, for `substitutes_for`, that it has been exercised.",no,no,,no
+8,Action,runtime,no,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+8,Action,runtime,no,recorded_at,Recorded at,When this record was written.,yes,no,,no
+8,Action,runtime,no,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+8,Action,runtime,no,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+8,Action,runtime,no,mode,Which position this record asserts,See permitted values below.,no,no,Action.mode,yes
+8,Action,runtime,no,actor_id,Who or what acted,"Must resolve to a single actor — `john.smith`, `batch-4471`, `agent-21094`. Not a team, not a process family.",no,yes,,no
+8,Action,runtime,no,actor_type,Actor type,See permitted values below.,no,no,Action.actor_type,yes
+8,Action,runtime,no,verb,What was done,See permitted values below.,no,no,Action.verb,yes
+8,Action,runtime,no,target_asset_id,What it was done to,,no,yes,,no
+8,Action,runtime,no,destination_asset_id,Where the copy went,"Required for `extract`, null otherwise. Resolves to an Asset, so its six location facts come with it.",no,yes,,no
+8,Action,runtime,no,retention,Whether the copy persisted,"What happened to the copy after the act. A state after the act, not a different act. See permitted values below.",no,no,Action.retention,yes
+8,Action,runtime,no,output_sensitivity,What the output carried,"The class of what this action put into its destination, on the same scale as `Asset.information_class`. Null means the target asset's class stands.",no,no,,no
+8,Action,runtime,no,authority_id,Under what authority,"The grant the action was taken under. Null is a finding, not a blank.",no,yes,,no
+8,Action,runtime,no,preconditions,Preconditions,What had to hold before it could occur.,no,no,,no
+8,Action,runtime,no,occurred_at,When it happened,,no,no,,no
+9,Exception,runtime,no,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+9,Exception,runtime,no,recorded_at,Recorded at,When this record was written.,yes,no,,no
+9,Exception,runtime,no,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+9,Exception,runtime,no,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+9,Exception,runtime,no,kind,Break type,See permitted values below.,no,no,Exception.kind,yes
+9,Exception,runtime,no,control_id,Control affected,,no,yes,,no
+9,Exception,runtime,no,asset_ids[],Assets affected,,no,no,,no
+9,Exception,runtime,no,detected_by,Detected by,,no,no,,no
+9,Exception,runtime,no,detected_at,When detected,,no,no,,no
+9,Exception,runtime,no,occurred_at,When it happened,The interval between these two is what a supervisor asks about.,no,no,,no
+9,Exception,runtime,no,materiality,Materiality,Regulatory consequence. Not the same scale as `Asset.criticality`.,no,no,,no
+9,Exception,runtime,no,recurrence_key,Repeat identifier,"What makes this the same break as a previous one. Without it, the third occurrence looks like the first.",no,no,,no
+9,Exception,runtime,no,root_cause_ref,Root cause,"May reference an external classification — an ATT&CK technique, an OWASP category — rather than a term owned here.",no,no,,no
+9,Exception,runtime,no,status,Status,See permitted values below. **Defaults to `recorded`.**,no,no,Exception.status,yes
+9,Exception,runtime,no,remediation_id,Remediation,,no,yes,,no
+10,Decision,runtime,no,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+10,Decision,runtime,no,recorded_at,Recorded at,When this record was written.,yes,no,,no
+10,Decision,runtime,no,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+10,Decision,runtime,no,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+10,Decision,runtime,no,subject_ref,What was decided about,,no,no,,no
+10,Decision,runtime,no,kind,Decision type,See permitted values below.,no,no,Decision.kind,yes
+10,Decision,runtime,no,decided_by,Decided by,"Who or what exercised the judgement — a person, a system or an agent.",no,no,,no
+10,Decision,runtime,no,answerable_for,Accountable for this decision,The person who answers for it. **Always a person.**,no,no,,no
+10,Decision,runtime,no,authority_id,Under what authority,,no,yes,,no
+10,Decision,runtime,no,rationale,Reason for the decision,,no,no,,no
+10,Decision,runtime,no,evidence_refs[],Evidence relied on,,no,no,,no
+10,Decision,runtime,no,decided_at,When decided,,no,no,,no
+11,Evidence,spanning,no,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+11,Evidence,spanning,no,recorded_at,Recorded at,When this record was written.,yes,no,,no
+11,Evidence,spanning,no,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+11,Evidence,spanning,no,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+11,Evidence,spanning,no,subject_ref,What it evidences,,no,no,,no
+11,Evidence,spanning,no,kind,Evidence type,See permitted values below.,no,no,Evidence.kind,yes
+11,Evidence,spanning,no,captured_at,When captured,,no,no,,no
+11,Evidence,spanning,no,captured_by,Captured by,**Must differ from the actor that performed the Action.** Self-verification is not evidence.,no,no,,no
+11,Evidence,spanning,no,retention_until,Retain until,,no,no,,no
+11,Evidence,spanning,no,storage_location,Where held,,no,no,,no
+11,Evidence,spanning,no,independent,Held independently,Whether this evidence sits outside the system it evidences.,no,no,,no
+11,Evidence,spanning,no,integrity_hash,Integrity check,,no,no,,no
+12,Permission,spanning,yes,id,Identifier,"Stable identifier for this record. Names an identity, not a row.",yes,no,,no
+12,Permission,spanning,yes,recorded_at,Recorded at,When this record was written.,yes,no,,no
+12,Permission,spanning,yes,recorded_by,Recorded by,Who or what wrote it.,yes,no,,no
+12,Permission,spanning,yes,derived_from,Derived from,The object or Asset this record was made from. Null means nobody could say where it came from. A record cannot evidence the thing it was derived from.,yes,no,,no
+12,Permission,spanning,yes,effective_from,Effective from,When the fact it asserts began to hold.,yes,no,,no
+12,Permission,spanning,yes,effective_to,Effective to,When it ceased to hold. Null means current.,yes,no,,no
+12,Permission,spanning,yes,id,Permission ID,"Stable, meaningless.",no,no,,no
+12,Permission,spanning,yes,asset_ids[],What it covers,The assets this position applies to.,no,no,,no
+12,Permission,spanning,yes,granted_by,Granted by,The Owner of the asset. Not the owner of the agent.,no,no,,no
+12,Permission,spanning,yes,purpose,Purpose,Why the data may be used. **The field the model previously could not express.**,no,no,,no
+12,Permission,spanning,yes,permitted_destinations[],Where it may go,"The Assets the data may reach — systems, providers or stores. Jurisdictions are not held here; traverse to each destination's `location{}`, per principle 7.",no,no,,no
+12,Permission,spanning,yes,onward_disclosure,Onward disclosure,Whether the data may leave the organisation at all. Which third parties is answered by `permitted_destinations[]` pointing at provider Assets.,no,no,,no
+12,Permission,spanning,yes,conditions,Conditions,Constraints attached to the position.,no,no,,no
+12,Permission,spanning,yes,expires,Expires,,no,no,,no
+12,Permission,spanning,yes,assessment_refs[],Assessments relied on,"The privacy impact assessment and any equivalent, as Evidence.",no,no,,no
+12,Permission,spanning,yes,retention_ref,Retention position,Where the retention decision is recorded.,no,no,,no
+12,Permission,spanning,yes,source_ref,Source document,"The agreement itself. **Must resolve to a registered Asset**, not free text.",no,no,,no
